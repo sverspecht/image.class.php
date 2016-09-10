@@ -2,19 +2,19 @@
 
 class image_algorithmes extends image {
 
-	/* Construction de ma référence à mon image */
+	/* Construction de ma rÃ©fÃ©rence Ã  mon image */
 	public function __construct($image) {
 		$this->img =& $image->img;
 		$this->width =& $image->width;
 		$this->height =& $image->height;
 	}
 
-	/* Copie un pixel d'une image à une autre */
+	/* Copie un pixel d'une image Ã  une autre */
 	public function copypoint($from, $frompxl, $topxl){
 		imagecopy($this->img, $from->img, $topxl[0], $topxl[1], $frompxl[0], $frompxl[1], 1, 1);
 	}
 	
-	/*	Applique la transformation du "photomaton" à l'image actuelle avec un nombre de mini-photos réglable */
+	/*	Applique la transformation du "photomaton" Ã  l'image actuelle avec un nombre de mini-photos rÃ©glable */
 	public function photomaton($nb = 2, $action = 'do'){
 		$nbx = is_array($nb)?$nb[0]:$nb;
 		$nby = is_array($nb)?$nb[1]:$nb;
@@ -39,7 +39,7 @@ class image_algorithmes extends image {
 		return $this;
 	}
 
-	/* 	Applique la transformation du boulanger à l'image actuelle avec un nombre de morceaux à couper réglable */
+	/* 	Applique la transformation du boulanger Ã  l'image actuelle avec un nombre de morceaux Ã  couper rÃ©glable */
 	public function boulanger($n = 2, $action = 'do'){
 		$width = $this->width;
 		$height = $this->height;
@@ -61,8 +61,8 @@ class image_algorithmes extends image {
 		return $this;
 	}
 
-	/*	Applique la transformation de la "fleur" à l'image actuelle avec un nombre de pétales réglable,
-		et un mode 'reverse' pour qui définit la première pétale */
+	/*	Applique la transformation de la "fleur" Ã  l'image actuelle avec un nombre de pÃ©tales rÃ©glable,
+		et un mode 'reverse' pour qui dÃ©finit la premiÃ¨re pÃ©tale */
 	public function fleur($nb = 2, $action = 'do', $mode = 'standard'){
 		$nbx = is_array($nb)?$nb[0]:$nb;
 		$nby = is_array($nb)?$nb[1]:$nb;
@@ -89,7 +89,7 @@ class image_algorithmes extends image {
 		return $this;
 	}
 
-	/*	Applique une scission en lignes ou en colonnes entralacées de l'image actuelle avec un nombre de "tour" réglable,*/
+	/*	Applique une scission en lignes ou en colonnes entralacÃ©es de l'image actuelle avec un nombre de "tour" rÃ©glable,*/
 	public function lignes($type, $nb = 2, $action = 'do'){
 		if($type != 'x'){ $c1 = 'y'; $c2 = 'x'; }
 		else{ $c1 = 'x'; $c2 = 'y'; }
@@ -114,7 +114,7 @@ class image_algorithmes extends image {
 		return $this;
 	}
 
-	/*	Applique une translation parallèlement à l'axe $type et d'un vecteur $nb*/
+	/*	Applique une translation parallÃ¨lement Ã  l'axe $type et d'un vecteur $nb*/
 	public function translation($type, $nb = 1, $action = 'do'){
 		$copy = imagecreatetruecolor($this->width, $this->height);
 		if($type == 'x'){ 

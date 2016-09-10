@@ -2,14 +2,14 @@
 
 class image_distortions extends image {
 
-	/* Construction de ma référence à mon image */
+	/* Construction de ma rÃ©fÃ©rence Ã  mon image */
     public function __construct($image) {
         $this->img =& $image->img;
 		$this->width =& $image->width;
         $this->height =& $image->height;
     }
 
-	/* Copie un pixel d'une image à une autre */
+	/* Copie un pixel d'une image Ã  une autre */
 	public function copypoint($from, $frompxl, $topxl){
 		imagecopy($this->img, $from->img, $topxl[0], $topxl[1], $frompxl[0], $frompxl[1], 1, 1);
 	}
@@ -32,9 +32,9 @@ class image_distortions extends image {
 		return $this;
 	}
 	
-	/* Copie un quadrilatère sur un autre */
+	/* Copie un quadrilatÃ¨re sur un autre */
 	public function copyquad($from, $frompxls, $topxls, $precision = 1){
-		//Possibilité de charger une image entière
+		//PossibilitÃ© de charger une image entiÃ¨re
 		if($frompxls == "all"){ $frompxls = array(0,0, $from->width,0, $from->width, $from->height, 0, $from->height); }
 
 		$fromdxup = $frompxls[0] - $frompxls[2];
@@ -61,7 +61,7 @@ class image_distortions extends image {
 		return $this;
 	}
 
-	/* Copie une image sur un sphére de centre et de rayon donné */
+	/* Copie une image sur un sphÃ©re de centre et de rayon donnÃ© */
 	public function copysphere($from, $cx, $cy, $proportion = 1){
 		
 		$ATANSCALE = 2/(pi()*$proportion);
@@ -75,13 +75,13 @@ class image_distortions extends image {
 				$xk=($x/$width)*2-1;
 				$yk=($y/$height)*2-1;
 				
-				// On vérifie être dans notre sphère
+				// On vÃ©rifie Ãªtre dans notre sphÃ¨re
 				if ( (pow($yk,2)+pow($xk,2))<1 ){
 		 
-					// Pythagore pour trouver la coordonné en Z
+					// Pythagore pour trouver la coordonnÃ© en Z
 					$zk = sqrt(1-(pow($yk,2)+pow($xk,2)));
 					
-					// Changement de repère
+					// Changement de repÃ¨re
 					$xs = atan($xk / $zk ) * $ATANSCALE;
 					$ys = atan($yk / $zk ) * $ATANSCALE;
 					
@@ -89,7 +89,7 @@ class image_distortions extends image {
 					$xtex = ($width*($xs+1)/2);
 					$ytex = ($height*($ys+1)/2);
 					
-					// Si on est sur la sphère, ...
+					// Si on est sur la sphÃ¨re, ...
 					if($xtex > 0 && $xtex < $from->width && $ytex > 0 && $ytex < $from->height){
 						$this->copypoint($from, array($xtex, $ytex), array($cx+$x-$width/2, $cy+$y-$height/2));
 					}

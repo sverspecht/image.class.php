@@ -3,7 +3,7 @@ class image {
 
 	public	$img, $width, $height, $table;
 	
-	/* 	Nouvelle image à partir d'une image existante ou
+	/* 	Nouvelle image Ã  partir d'une image existante ou
 		En fournissant la largeur, la hauteur et la couleur */
 	public function __construct($varx, $vary = false, $col = array(0,0,0)){
 		if(is_int($varx) && is_int($vary)){
@@ -27,7 +27,7 @@ class image {
 		}
 	}
 	
-	/*	Gère l'affichage de l'image au format désiré */
+	/*	GÃ¨re l'affichage de l'image au format dÃ©sirÃ© */
 	public function afficher($type = false){
 		$type = function_exists('image'.$type)?$type:'png';
 		header('Content-type: image/'.$type);
@@ -35,7 +35,7 @@ class image {
 		$my_fct($this->img);
 	}
 	
-	/* Enregistrer l'image au format désiré en qualité désirée */
+	/* Enregistrer l'image au format dÃ©sirÃ© en qualitÃ© dÃ©sirÃ©e */
 	public function enregistrer($url, $qualite = 100){
 		$type = strtolower(substr(strrchr($url, '.'), 1));
 		$my_fct = function_exists('image'.$type)?'image'.$type:'imagepng';
@@ -56,7 +56,7 @@ class image {
 		return FALSE;
 	}	
 	
-	/*	Effectue symétrie d'axe (Haut/Bas) X ou Y (Gauche/Droite) */
+	/*	Effectue symÃ©trie d'axe (Haut/Bas) X ou Y (Gauche/Droite) */
 	public function math_symetrie($axe = 'X'){ 
 		$temp = new image($this->width, $this->height);
 		$dimension = (strtoupper($axe) == 'Y')?'width':'height';
@@ -99,15 +99,15 @@ class image {
 		else return FALSE;
 	}
 
-	/*	Récupère la couleur (R,G,B) du pixel indiqué */
-    public function get_color_at($x, $y){ //on spécifie l'image considérée, et la postion en x et en y du pixel
-        $rgb = ImageColorAt($this->img, $x, $y); //on récupére l'information voulue (mais en binaire)
+	/*	RÃ©cupÃ¨re la couleur (R,G,B) du pixel indiquÃ© */
+    public function get_color_at($x, $y){ //on spÃ©cifie l'image considÃ©rÃ©e, et la postion en x et en y du pixel
+        $rgb = ImageColorAt($this->img, $x, $y); //on rÃ©cupÃ©re l'information voulue (mais en binaire)
         
-        $r = ($rgb >> 16) & 0xFF; //On décale la couleur de 16 bits pour obtenir la valeur du ROUGE
-        $g = ($rgb >> 8)  & 0xFF; //On décale la couleur de 8 bits pour obtenir la valeur du VERT
-        $b = $rgb & 0xFF; //On récupère simplement la valeur du BLEU
+        $r = ($rgb >> 16) & 0xFF; //On dÃ©cale la couleur de 16 bits pour obtenir la valeur du ROUGE
+        $g = ($rgb >> 8)  & 0xFF; //On dÃ©cale la couleur de 8 bits pour obtenir la valeur du VERT
+        $b = $rgb & 0xFF; //On rÃ©cupÃ¨re simplement la valeur du BLEU
         
-        return array($r,$g,$b); //On renvoie la couleur su pixel sous forme complète hexadécimale
+        return array($r,$g,$b); //On renvoie la couleur su pixel sous forme complÃ¨te hexadÃ©cimale
     }
 	/* 	Retourne le tableau de pixels de l'image */
 	public function get_table($a = 1, $b = 1){
@@ -124,7 +124,7 @@ class image {
 	}
 
 
-	/*	Pixelise l'image en pixels aux dimensions indiquées */
+	/*	Pixelise l'image en pixels aux dimensions indiquÃ©es */
 	public function pixelise($a, $b){
 		$out = $this->get_table($a, $b);
 		$destination = new image($this->width, $this->height);
@@ -139,7 +139,7 @@ class image {
 	}
 	
 
-	/* Charge une sous-class de fonctionnalités */
+	/* Charge une sous-class de fonctionnalitÃ©s */
 	public function load($fonctionnalite) {
 	    // syntaxe de la fonctinnalite
 	    $fonctionnalite = strtolower($fonctionnalite);
@@ -147,13 +147,13 @@ class image {
 	    $className = 'image_' . $fonctionnalite;
 	    // on va chercher le fichier qui va bien
 	    require_once $className . '.class.php';
-	    // On lie les méthodes de Image_Fonctionnalite et l'objet courant
+	    // On lie les mÃ©thodes de Image_Fonctionnalite et l'objet courant
 	    $this->$fonctionnalite = new $className($this);
 		return $this->$fonctionnalite;
 	}
 
 	
-	/*	Importe des données d'un objet dans l'actuel */	
+	/*	Importe des donnÃ©es d'un objet dans l'actuel */	
 	public function copier($temp, $width = false, $height = false){
 	if($width == false && $height == false):
 		$this->img 		= $temp->img;
@@ -166,7 +166,7 @@ class image {
 	endif;
 	}
 	
-	/*	Vide la ressource mémoire d'une image */
+	/*	Vide la ressource mÃ©moire d'une image */
 	public function vider(){
 		imageDestroy($this->img);
 	}

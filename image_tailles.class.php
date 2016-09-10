@@ -2,14 +2,14 @@
 
 class image_tailles extends image {
 
-	/* Construction de ma référence à mon image */
+	/* Construction de ma rÃ©fÃ©rence Ã  mon image */
     public function __construct($image) {
         $this->img =& $image->img;
 		$this->width =& $image->width;
         $this->height =& $image->height;
     }
 
-	/*	Recadre une image en spécifiant la hauteur et la largeur finale */
+	/*	Recadre une image en spÃ©cifiant la hauteur et la largeur finale */
 	public function recadrer($w, $h){ 
 		$rapport_final = $w/$h;
 		$rapport_original = $this->width/$this->height;
@@ -32,7 +32,7 @@ class image_tailles extends image {
 		return $this;
 	}
 
-	/*	Redimensionne une image en spécifiant les maximums de hauteur et de largeur */
+	/*	Redimensionne une image en spÃ©cifiant les maximums de hauteur et de largeur */
 	public function redimensionner($max_w, $max_h, $option = false){ 
 		if($option == 'no_enlarge' && $max_w > $this->width && $max_h > $this->height) return $this;
 			
@@ -60,7 +60,7 @@ class image_tailles extends image {
 		return $this;
 	}
 	
-		/*	Agrandit une image en spécifiant les minimas de hauteur et de largeur */
+		/*	Agrandit une image en spÃ©cifiant les minimas de hauteur et de largeur */
 	public function agrandir($min){ 
 		if($this->width > $min && $this->height > $min) return TRUE;
 		$ratio = $this->width/$this->height;
@@ -80,7 +80,7 @@ class image_tailles extends image {
 	}
 
 	
-	/*	Réechantillonne une image en spécifiant la hauteur et la largeur finale
+	/*	RÃ©echantillonne une image en spÃ©cifiant la hauteur et la largeur finale
 		Si une couleur est fournie, elle servira de fond pour conserver le ratio */
 	public function reechantillonner($w, $h, $bgcolor = false){ 
 		if(is_array($bgcolor)):
