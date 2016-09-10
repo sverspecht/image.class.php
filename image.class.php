@@ -140,7 +140,7 @@ class image {
 	
 
 	/* Charge une sous-class de fonctionnalités */
-	public function load($fonctionnalite) {
+	public function charger($fonctionnalite) {
 	    // syntaxe de la fonctinnalite
 	    $fonctionnalite = strtolower($fonctionnalite);
 	    // syntaxe de la classe
